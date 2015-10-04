@@ -1,7 +1,10 @@
 <html>
     <head>
         <style>
-            table, th , td {
+            table {
+				background-color: #E6E6FA;
+			}
+			th , td {
                 border: 1px solid grey;
                 border-collapse: collapse;
                 padding: 5px;
@@ -19,7 +22,7 @@
         <script type="text/javascript" src="https://www.google.com/jsapi"></script>
         <script type='text/javascript'>
         var xmlhttp = new XMLHttpRequest();
-        var url = "https://pacific-taiga-4615.herokuapp.com/welcome/datasend";
+        var url = "https://cse5335-1001117995.herokuapp.com/welcome/datasend";
         var myArr;
         var male ;
         var female;
@@ -77,7 +80,7 @@
             geocoder = new google.maps.Geocoder();
             var mapOptions = {
               center: { lat: 32.730468, lng: -97.114774},
-              zoom: 8
+              zoom: 3
             };
             map = new google.maps.Map(document.getElementById('map-canvas'),mapOptions);
         }
@@ -120,7 +123,8 @@
         // Set chart options
         var options = {'title':'Gender % of people Sharan took photo with',
                        'width':600,
-                       'height':300};
+                       'height':480,
+					   'background-color':"#E6E6FA"};
 
         // Instantiate and draw our chart, passing in some options.
         var chart = new google.visualization.PieChart(document.getElementById('chart_div'));
@@ -129,11 +133,10 @@
     </script>
     </head>
     <body onload="initialize()" bgcolor="#E6E6FA">
-        <p>  List of friends and location Sharan took photo with!! </p>
+        <p> <h1> <center> List of friends and location Sharan took photo with!! </center> </h1> </p>
         <button id="button1">Are You Ready?</button>
 		<p> </p>
-        <div id="map-canvas" style="float:left; width: 920px; height: 480px;"> </div>
-        <p> </p>
-		<div id="chart_div" style="float:right"></div>
+        <div id="map-canvas" style="float:left; width: 720px; height: 480px;"> </div>
+		<div id="chart_div" bgcolor="#E6E6FA" style="float:right; height: 480px;"></div>
     </body>
 </html>
