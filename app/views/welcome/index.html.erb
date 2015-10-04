@@ -19,7 +19,7 @@
         <script type="text/javascript" src="https://www.google.com/jsapi"></script>
         <script type='text/javascript'>
         var xmlhttp = new XMLHttpRequest();
-        var url = "http://localhost:3000/welcome/datasend";
+        var url = "https://pacific-taiga-4615.herokuapp.com/welcome/datasend";
         var myArr;
         var male ;
         var female;
@@ -130,11 +130,10 @@
     </head>
     <body onload="initialize()">
         <p>  List of friends and location Sharan took photo with!! </p>
-        <p>  </p>
         <button id="button1">Are You Ready?</button>
+		<p> </p>
+        <div id="map-canvas" style="width: 920px; height: 480px;"> </div>
         <p> </p>
-        <div id="map-canvas" style="width: 720px; height: 480px;"></div>
-        
-        <div id="chart_div"></div>
+		<div id="chart_div"></div>
     </body>
 </html>
