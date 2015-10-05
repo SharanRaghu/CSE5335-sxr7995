@@ -11,6 +11,7 @@
             }
             table tr:nth-child(odd) {
                 background-color: #f1f1f1;
+				
             }
             table tr:nth-child(even) {
                 background-color: #ffffff;
@@ -22,11 +23,13 @@
         <script type="text/javascript" src="https://www.google.com/jsapi"></script>
         <script type='text/javascript'>
         var xmlhttp = new XMLHttpRequest();
-        var url = "https://pacific-taiga-4615.herokuapp.com/welcome/datasend";
+        var url = "http://localhost:3000/welcome/datasend";
         var myArr;
         var male ;
         var female;
-        
+        var uta;
+		var nonuta;
+		
         $(document).ready(function(){
 
             $('#button1').click(function(){
@@ -37,11 +40,13 @@
                 }
                 
                 function myFunction(arr){
-                    var out = "<table>";
+                    var out = "<table><tr><th>NAME</th><th>UNIVERSITY</th><th>ADDRESS</th><th>MALE</th></tr>";
                     var i;
                     male = 0;
                     female = 0;
-                        
+					uta = 0;
+					nonuta = 0;
+					
                     for(i=0; i < arr.length; i++){
                         out += "<tr><td>" +
                             arr[i].fname +
@@ -49,6 +54,8 @@
                             arr[i].school +
                             "</td><td>" +
                             arr[i].address +
+                            "</td><td>" +
+                            arr[i].male +
                             "</td></tr>";
 
                         
@@ -58,6 +65,12 @@
                         else
                             female += 1;
             
+						var u = arr[i].school.localeCompare("UTA");
+                        if (u == 0)
+                            uta += 1;
+                        else
+                            nonuta += 1;
+						
                     }
                     out += "</table>"        
                     $("#button1").html(out)
@@ -67,7 +80,8 @@
                     };
                     
                     drawChart(male, female);
-                    
+					
+					drawSecondChart(uta, nonuta);
                 }
             });
         });
@@ -113,7 +127,7 @@
         // Create the data table.
         var data = new google.visualization.DataTable();
         data.addColumn('string', 'male');
-        data.addColumn('number', 'person');
+        data.addColumn('number', 'percentage');
         data.addRows([
           ['Males', males],
           ['Females', females],
@@ -124,19 +138,53 @@
         var options = {'title':'Gender % of people Sharan took photo with',
                        'width':600,
                        'height':480,
-					   'background-color':"#E6E6FA"};
+					   'pieStartAngle': 100,
+					   is3D: true
+					   };
 
         // Instantiate and draw our chart, passing in some options.
         var chart = new google.visualization.PieChart(document.getElementById('chart_div'));
         chart.draw(data, options);
+		
+      }
+	  
+	  function drawSecondChart(uta, nonuta) {
+
+        // Create the data table.
+        var data = new google.visualization.DataTable();
+        data.addColumn('string', 'UTA');
+        data.addColumn('number', 'percentage');
+        data.addRows([
+          ['UTA', uta],
+          ['Columbia', 1],
+		  ['Xaviers', 2],
+		  ['USC',1],
+		  ['NCSU',1],
+          ['Carmel',1]
+        ]);
+
+        // Set chart options
+        var options = {'title':'UTA / NonUTA',
+                       'width':600,
+                       'height':480,
+					   'pieHole': 0.4
+					   };
+
+        // Instantiate and draw our chart, passing in some options.
+        var chart = new google.visualization.PieChart(document.getElementById('chart1_div'));
+        chart.draw(data, options);
+		
       }
     </script>
     </head>
     <body onload="initialize()" bgcolor="#E6E6FA">
         <p> <h1> <center> List of friends and location Sharan took photo with!! </center> </h1> </p>
-        <button id="button1">Are You Ready?</button>
+        <center> <button id="button1">Are You Ready?</button> </center>
 		<p> </p>
-        <div id="map-canvas" style="float:left; width: 720px; height: 480px;"> </div>
+		<div id="map-canvas" style="float:left; width: 720px; height: 480px;"> </div>
+		<p>
 		<div id="chart_div" bgcolor="#E6E6FA" style="float:right; height: 480px;"></div>
-    </body>
+		<div id="chart1_div" bgcolor="#E6E6FA" style="float:left; height: 480px;"></div>
+		</p>
+	</body>
 </html>
