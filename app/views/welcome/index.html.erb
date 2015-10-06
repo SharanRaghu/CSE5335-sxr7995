@@ -4,14 +4,20 @@
             table {
 				background-color: #E6E6FA;
 			}
-			th , td {
+			th {
                 border: 1px solid grey;
                 border-collapse: collapse;
                 padding: 5px;
+				color: #FF0000;
+            }
+			td {
+                border: 1px solid grey;
+                border-collapse: collapse;
+                padding: 5px;
+				color: #0000FF;
             }
             table tr:nth-child(odd) {
                 background-color: #f1f1f1;
-				
             }
             table tr:nth-child(even) {
                 background-color: #ffffff;
@@ -23,7 +29,7 @@
         <script type="text/javascript" src="https://www.google.com/jsapi"></script>
         <script type='text/javascript'>
         var xmlhttp = new XMLHttpRequest();
-        var url = "http://localhost:3000/welcome/datasend";
+        var url = "https://pacific-taiga-4615.herokuapp.com/welcome/datasend";
         var myArr;
         var male ;
         var female;
@@ -178,7 +184,9 @@
     </script>
     </head>
     <body onload="initialize()" bgcolor="#E6E6FA">
+		<font color="#457721">
         <p> <h1> <center> List of friends and location Sharan took photo with!! </center> </h1> </p>
+		<font>
         <center> <button id="button1">Are You Ready?</button> </center>
 		<p> </p>
 		<div id="map-canvas" style="float:left; width: 720px; height: 480px;"> </div>
