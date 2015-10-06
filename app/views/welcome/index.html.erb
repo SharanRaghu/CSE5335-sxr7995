@@ -23,12 +23,15 @@
                 background-color: #ffffff;
             }
             
-        </style>
+        </style>s
         <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.11.2/jquery.min.js"></script>        
         <script type="text/javascript" src="https://maps.googleapis.com/maps/api/js?key=AIzaSyBI77onKHBURMe_IFrsG1tpoeJk6Q_CC2o"> </script>
         <script type="text/javascript" src="https://www.google.com/jsapi"></script>
         <script type='text/javascript'>
-        var xmlhttp = new XMLHttpRequest();
+        
+		// Reference: http://www.w3schools.com/json/json_http.asp
+		
+		var xmlhttp = new XMLHttpRequest();
         var url = "https://pacific-taiga-4615.herokuapp.com/welcome/datasend";
         var myArr;
         var male ;
@@ -94,6 +97,8 @@
         xmlhttp.open("GET", url, true);
         xmlhttp.send();
         
+		//Reference: https://developers.google.com/maps/documentation/javascript/geocoding
+		
         var geocoder;
         var map;   
         function initialize() {
@@ -124,10 +129,10 @@
       
       google.load('visualization', '1.0', {'packages':['corechart']});
 
-      
+	//Reference: https://developers.google.com/chart/interactive/docs/drawing_charts
+	
       google.setOnLoadCallback(drawChart);
-
-      
+     
       function drawChart(males, females) {
 
         // Create the data table.
